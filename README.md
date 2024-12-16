@@ -1,1 +1,1 @@
-# Case-Stury-Softwaredesign
+# Case-Study-Softwaredesign
