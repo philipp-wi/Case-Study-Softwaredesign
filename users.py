@@ -1,12 +1,34 @@
+from tinydb import Query, TinyDB
+from serializer import serializer
+import os
+
 class User:
+
+    db_connector = TinyDB(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'database.json'), storage=serializer).table('users')
+
     def __init__(self, id, name) -> None:
-        """Create a new user based on the given name and id"""
+        """Create a new user"""
         self.name = name
         self.id = id
 
     def store_data(self)-> None:
         """Save the user to the database"""
+        userQuery = Query()
+        result = self.db_connector.search(userQuery.name == self.name)
+        if result:
+            # Update the existing record with the current instance's data
+            result = self.db_connector.update(self.__dict__, doc_ids=[result[0].doc_id])
+            print("Data updated.")
+        else:
+            # If the user doesn't exist, insert a new record
+            self.db_connector.insert(self.__dict__)
+        print("Data inserted.")
         pass
+
+    def setOptionalData(self,alter = "", jahrgang = "", email = "") -> None:
+        self.alter = alter
+        self.jahrgang = jahrgang
+        self.email = email
 
     def delete(self) -> None:
         """Delete the user from the database"""
