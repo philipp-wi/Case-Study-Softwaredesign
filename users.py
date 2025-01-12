@@ -22,8 +22,7 @@ class User:
         else:
             # If the user doesn't exist, insert a new record
             self.db_connector.insert(self.__dict__)
-        print("Data inserted.")
-        pass
+            print("Data inserted.")
 
     def setOptionalData(self,alter = "", jahrgang = "", email = "") -> None:
         self.alter = alter
@@ -32,7 +31,17 @@ class User:
 
     def delete(self) -> None:
         """Delete the user from the database"""
-        pass
+        userQuery = Query()
+        result = self.db_connector.search(userQuery.name == self.name)
+        print("Query and stored name:")
+        print(userQuery.name)
+        print(self.name)
+        if result:
+            # Delete the record from the database
+            self.db_connector.remove(doc_ids=[result[0].doc_id])
+            print("Data deleted.")
+        else:
+            print("Data not found.")
     
     def __str__(self):
         return f"User {self.id} - {self.name}"
@@ -46,6 +55,14 @@ class User:
         pass
 
     @classmethod
-    def find_by_attribute(cls, by_attribute : str, attribute_value : str) -> 'User':
-        """From the matches in the database, select the user with the given attribute value"""
-        pass
+    def find_by_attribute(cls, by_attribute: str, attribute_value: str, num_to_return=1):
+        # Load data from the database and create an instance of the Device class
+        UserQuery = Query()
+        result = cls.db_connector.search(UserQuery[by_attribute] == attribute_value)
+
+        if result:
+            data = result[:num_to_return]
+            user_results = [cls(d['id'], d['name']) for d in data]
+            return user_results if num_to_return > 1 else user_results[0]
+        else:
+            return None

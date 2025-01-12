@@ -3,6 +3,28 @@ import users
 
 st.write("Nutzerverwaltung")
 
+name = st.text_input("Nutzername")
+nutzerid = st.text_input("ID (Optional)")
+
+suchen = st.button("Nutzer suchen")
+loeschen = st.button("Nutzer löschen")
+
+if (suchen):
+    user = users.User.find_by_attribute("name", name)
+    if (user == None):
+        st.text("Nutzer nicht gefunden❌")
+    else:    
+        st.text("Nutzer gefunden✅")
+
+if (loeschen):
+    user = users.User.find_by_attribute("name", name)
+    if (user == None):
+        st.text("Nutzer existieirt nicht❌")
+    else:
+        user.delete()
+        st.text("Nutzer wurde gelöscht✅")
+
+
 def clearText():
     st.session_state.name = ""
     st.session_state.nutzerId = ""
