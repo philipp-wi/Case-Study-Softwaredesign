@@ -1,29 +1,8 @@
 import streamlit as st
 import users
 
-st.write("Nutzerverwaltung")
-
-name = st.text_input("Nutzername")
-nutzerid = st.text_input("ID (Optional)")
-
-suchen = st.button("Nutzer suchen")
-loeschen = st.button("Nutzer löschen")
-
-if (suchen):
-    user = users.User.find_by_attribute("name", name)
-    if (user == None):
-        st.text("Nutzer nicht gefunden❌")
-    else:    
-        st.text("Nutzer gefunden✅")
-
-if (loeschen):
-    user = users.User.find_by_attribute("name", name)
-    if (user == None):
-        st.text("Nutzer existieirt nicht❌")
-    else:
-        user.delete()
-        st.text("Nutzer wurde gelöscht✅")
-
+st.header("Nutzerverwaltung")
+st.subheader("Neuen Benutzer anlegen")
 
 def clearText():
     st.session_state.name = ""
@@ -51,3 +30,26 @@ with st.popover("Neuen Benutzer Anlegen"):
         temp = users.User(nutzerId,name)
         temp.setOptionalData(alter,jahrgang,email)
         temp.store_data()
+
+st.subheader("Benutzer suchen/löschen")
+
+name = st.text_input("Nutzername")
+nutzerid = st.text_input("ID (Optional)")
+
+suchen = st.button("Nutzer suchen")
+loeschen = st.button("Nutzer löschen")
+
+if (suchen):
+    user = users.User.find_by_attribute("name", name)
+    if (user == None):
+        st.text("Nutzer nicht gefunden❌")
+    else:    
+        st.text("Nutzer gefunden✅")
+
+if (loeschen):
+    user = users.User.find_by_attribute("name", name)
+    if (user == None):
+        st.text("Nutzer existieirt nicht❌")
+    else:
+        user.delete()
+        st.text("Nutzer wurde gelöscht✅")
