@@ -24,3 +24,8 @@ python -m streamlit run mockup_ui.py
 Die zweite Abgabe befasste sich mit dem Backend. Es wurde mit TinyDB eine funktionierende Geräte-Verwaltung und Nutzer-Verwaltung programmiert.
 
 <img src="images/02_Device_Management.png" alt="Screenshot von neuen Geräteverwaltung" width="45%"> <img src="images/02_User_Management.png" alt="Screenshot von neuen Nutzer-Verwaltung" width="45%">
+
+
+## CaseStudy II - Abgabe
+### Funktionierende Reservierungsseite
+![Screenshot von Reservierungen neu](images/03_Reservations.png)
