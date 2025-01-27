@@ -58,3 +58,4 @@ with col2:
                 st.error(f"Gerät mit dem Namen '{device_name}' nicht gefunden!")
         else:
             st.error("Bitte einen gültigen Gerätenamen eingeben oder auswählen, um es zu löschen!❌")
+st.text("Um ein Gerät zu löschen, muss nur das Gerät oben ausgewählt werden.")
