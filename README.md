@@ -28,4 +28,4 @@ Die zweite Abgabe befasste sich mit dem Backend. Es wurde mit TinyDB eine funkti
 
 ## CaseStudy II - Abgabe
 ### Funktionierende Reservierungsseite
-<img src="images/03_Reservations.png" alt="Screenshot von neuer Reservierungsseite" width="45%">
+<img src="images/03_Reservations.png" alt="Screenshot von neuer Reservierungsseite" width="45%"> <img src="images/03_Wartungen.png" alt="Screenshot von neuer Wartungsseite" width="45%">
